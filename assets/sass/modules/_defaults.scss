@@ -1,0 +1,19 @@
+* {
+  border: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $main-bg-color;
+  color: $main-text-color;
+  font-family: $default-family;
+}
+
+a {
+  display: block;
+  color: white;
+
+  margin: 1rem 0;
+}
