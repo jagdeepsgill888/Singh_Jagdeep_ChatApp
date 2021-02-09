@@ -11,11 +11,17 @@
 <body>
   <main id="app">
       <h2>This is where my awesome chat message will show up</h2>
+        
+      <!-- vue custom message component goes here -->
+      
+      
       <section class="message-wrapper">
           <textarea type="text-message"></textarea>
           <input type="submit" value="send">
       </section>
   </main>
+
+  <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
   <script defer src="scripts/main.js"></script> 
 </body>
