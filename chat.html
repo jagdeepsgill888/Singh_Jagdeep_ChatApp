@@ -15,7 +15,7 @@
       <!-- vue custom message component goes here -->
       <section class="messages">
           <ul id="messages" v-for="message in messages">
-            <newmessage :msg="message"></newmessage>
+            <newmessage :msg="message" :socketid="socketID"></newmessage>
           </ul>
       </section>
 
