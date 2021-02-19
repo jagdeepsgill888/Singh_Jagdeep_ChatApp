@@ -27,6 +27,7 @@ import ChatMessage from "./components/TheMessageComponents.js"
            socketID: "",
            message: "",
            users: [],
+           date: "",
            typing: false,
            connection: 0
        },
@@ -34,17 +35,19 @@ import ChatMessage from "./components/TheMessageComponents.js"
 
        created: function() {
            console.log('its alive!!');
-           socket.on('connection',(data)=>{
-               this.connections = data;
-           })
+        //    socket.on('connection',(data)=>{
+        //        this.connections = data;
+        //    })
        },
+       
 
        methods: {
         dispatchMessage(){
             // debugger;
-            socket.emit('chatmessage', { content: this.message, timeStamp: this.timestamp, name: this.nickname || "Anonymous" });
+            socket.emit('chatmessage', { content: this.message, name: this.nickname || 'Anonymous', date: this.date });
 
             this.message = "";
+            
             this.timestamp = new Date().getTime();
 
             socket.on("typing", (data) => {
