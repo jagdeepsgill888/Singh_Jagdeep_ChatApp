@@ -27,12 +27,15 @@ messenger.attach(server);
 
 // socket is the individual connection - the caller
 messenger.on('connection', (socket) => {
+    
   console.log(`a user connected: ${socket.id}`);
+
+  
 
   // send the connected user their assigned ID
   socket.emit('connected', { sID: `${socket.id}`, message: 'new connection'});
-
-
+  console.log('connection', Object.keys(socket.connected).length);
+  
 
 
   socket.on('chatmessage', function(msg) {

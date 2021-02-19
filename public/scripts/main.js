@@ -27,12 +27,16 @@ import ChatMessage from "./components/TheMessageComponents.js"
            socketID: "",
            message: "",
            users: [],
-           typing: false
+           typing: false,
+           connection: 0
        },
        
 
        created: function() {
            console.log('its alive!!');
+           socket.on('connection',(data)=>{
+               this.connections = data;
+           })
        },
 
        methods: {
