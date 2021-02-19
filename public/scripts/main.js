@@ -18,14 +18,18 @@ import ChatMessage from "./components/TheMessageComponents.js"
         vm.messages.push(message);
     }
 
+
    const vm = new Vue ({
        data: {
            messages: [],
            nickname: "",
            username: "",
            socketID: "",
-           message: ""
+           message: "",
+           users: [],
+           typing: false
        },
+       
 
        created: function() {
            console.log('its alive!!');
@@ -34,16 +38,32 @@ import ChatMessage from "./components/TheMessageComponents.js"
        methods: {
         dispatchMessage(){
             // debugger;
-            socket.emit('chatmessage', { content: this.message, name: this.nickname || "Anonymous" });
+            socket.emit('chatmessage', { content: this.message, timeStamp: this.timestamp, name: this.nickname || "Anonymous" });
 
             this.message = "";
-        }
+            this.timestamp = new Date().getTime();
 
+            socket.on("typing", (data) => {
+                this.typing = data;
+              });
+          
+              socket.on("stopTyping", () => {
+                this.typing = false;
+              });
+        },
+
+        // watch: {
+        //     message(value) {
+        //       value ? socket.emit("typing", this.socketID) : socket.emit("stopTyping");
+        //     },
+        //   },
+        
        },
       
       components: {
           newmessage: ChatMessage
-      }
+      },
+      
    }) .$mount("#app");
 
    socket.addEventListener("connected", setUserId);

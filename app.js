@@ -37,8 +37,19 @@ messenger.on('connection', (socket) => {
 
   socket.on('chatmessage', function(msg) {
       console.log(msg);
-      messenger.emit('message', { id: socket.id, message: msg});
+      messenger.emit('message', { id: socket.id, message: msg, timeStamp: msg.timeStamp});
+      
   });
+
+  socket.on("typing", (data) => {
+    socket.broadcast.emit("typing", data);
+    console.log('a user is typing');
+  });
+
+  socket.on("stopTyping", () => {
+    socket.broadcast.emit("stopTyping");
+  });
+
 
   socket.on('disconnect', () => {
       console.log('a user has disconnected');

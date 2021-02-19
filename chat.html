@@ -18,7 +18,10 @@
             <newmessage :msg="message" :socketid="socketID"></newmessage>
           </ul>
       </section>
+  
+      <p class="online">Online: {{ users.length }} </p>
 
+      <small v-if="typing" class="text-white">{{ typing }} is typing</small>
       
       <section class="message-wrapper">
           <textarea v-model="message" type="text-message"></textarea>
