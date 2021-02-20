@@ -35,11 +35,30 @@ import ChatMessage from "./components/TheMessageComponents.js"
 
        created: function() {
            console.log('its alive!!');
-        //    socket.on('connection',(data)=>{
-        //        this.connections = data;
-        //    })
+           socket.on('connection',(data)=>{
+               this.connections = data;
+           })
+           
+
        },
        
+       created() {
+        socket.on('typing', (data) => {
+            this.typing = data;
+        })
+
+        socket.on('stoptyping', () => {
+            this.typing = false;
+        })
+    },
+
+    watch: {
+
+        message(value) {
+            value ? socket.emit('typing', this.username || "anonymous") : socket.emit('stoptyping')
+        }
+    },
+
 
        methods: {
         dispatchMessage(){
@@ -50,13 +69,13 @@ import ChatMessage from "./components/TheMessageComponents.js"
             
             this.timestamp = new Date().getTime();
 
-            socket.on("typing", (data) => {
-                this.typing = data;
-              });
+            // socket.on("typing", (data) => {
+            //     this.typing = data;
+            //   });
           
-              socket.on("stopTyping", () => {
-                this.typing = false;
-              });
+            //   socket.on("stopTyping", () => {
+            //     this.typing = false;
+            //   });
         },
 
         // watch: {

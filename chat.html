@@ -42,6 +42,7 @@
       <p class="online"><img src="images/user.svg" alt="">Online: {{ users.length }} </p>
 
       <small v-if="typing" class="text-white">{{ typing }} is typing</small>
+      <small v-if="stoptyping" class="text-white">{{ stoptyping }} is typing</small>
       
       <section class="message-wrapper">
           <div class="messagebox"><textarea v-model="message" placeholder="Enter message" type="text-message"></textarea></div>

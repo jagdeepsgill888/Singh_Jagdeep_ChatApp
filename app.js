@@ -50,7 +50,8 @@ messenger.on('connection', (socket) => {
   });
 
   socket.on("stopTyping", () => {
-    socket.broadcast.emit("stopTyping");
+    socket.broadcast.emit("stopTyping", data);
+    console.log('a user stopped typing');
   });
 
 
