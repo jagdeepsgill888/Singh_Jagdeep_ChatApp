@@ -66,8 +66,9 @@ import ChatMessage from "./components/TheMessageComponents.js"
             socket.emit('chatmessage', { content: this.message, name: this.nickname || 'Anonymous', date: this.date });
 
             this.message = "";
+            this.date = new Date().toString().slice(15, 24);
             
-            this.timestamp = new Date().getTime();
+            // this.timestamp = new Date().getTime();
 
             // socket.on("typing", (data) => {
             //     this.typing = data;
